@@ -24,7 +24,7 @@ body {
 	background-color: #fff;
 	font-family: 'ProximaRegular', sans-serif;
 	font-size: 21px;
-	overflow-x: none;
+	overflow-x: hidden;
 	text-rendering: optimizeLegibility;
 }
 
@@ -38,7 +38,7 @@ header .logo {
 }
 
 .carousel {
-	background: url("/static/img/Banner.jpg");
+	background: url("../img/Banner.jpg");
 	z-index: 999;
 	position: relative;
 	background-position: 100%;
@@ -266,11 +266,11 @@ left: 60px !important;
 .mrSelector {
 	width: 300px;
 	height: 80px;
-	float: left;
+	float: left;button
 }
 
 .mainForm label,
-.mainForm .label
+.mainForm .label,
 {
 	font-size: 18px;
 }

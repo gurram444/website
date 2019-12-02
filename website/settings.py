@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'home.apps.HomeConfig',
     'django.contrib.sites',
+    'crispy_forms',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -131,3 +132,8 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
     'static/',
 ]
+AUTH_USER_MODEL = "home.Client"
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+MEDIA_URL = '/media/'

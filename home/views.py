@@ -2,9 +2,12 @@ from django.shortcuts import render, render_to_response, redirect
 from django.http import HttpResponse
 from django.contrib import messages
 from .forms import *
+from django.contrib.auth.forms import AuthenticationForm
 from .models import *
+from django.contrib.auth import authenticate, login
 from django.template.context_processors import csrf
 from django.views.generic import View
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from random import randint
 import urllib
 from urllib import request
@@ -12,6 +15,7 @@ import urllib.request
 import urllib.parse
 from contextlib import closing
 from django.db.models import Q
+import hashlib
 
 
 # Create your views here.
@@ -40,61 +44,129 @@ resp = sendSMS('vV4ixMZmyok-YTys5TMHMljOCzBrfZDYc6aQzUED2B', '917406096991',
 print(resp)
 
 
-def register(request):
-    if request.method == "GET":
-        context = {}
-        context.update(csrf(request))
-        context['form'] = RegistrationForm()
-        return render_to_response('register.html', context)
-
+def clientcreation(request):
     if request.method == 'POST':
-        context = {}
-        form = RegistrationForm(request.POST)
-        # import pdb; pdb.set_trace()
+        form = ClientRegistrationForm(request.POST)
+
         if form.is_valid():
-            obj = form.save(commit=False)
-            obj.is_active = 1
-            # obj.save()
-            obj.mobile_phone = form.cleaned_data["mobile_phone"]
-            obj.save()
-            context["user"] = obj.username
-            return render(request, 'index.html', context)
-        else:
-            return render(request, 'register.html', {'form': form})
+            # import pdb;pdb.set_trace()
+            form.save()
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password1']
+            user = authenticate(username=username, password=password)
+            login(request, user)
+            request.session['user'] = username
+            return redirect('userauthentication')
+
+    else:
+        form = ClientRegistrationForm()
+
+    return render(request, 'registration/register.html', {'form': form})
 
 
-def login(request):
+def customercreation(request):
     if request.method == 'POST':
-        phone_number = request.POST.get('phone_number')
-        password = request.POST.get('password')
-        user = User.objects.filter(phone_number=phone_number, password=password)
-        if user:
-            return HttpResponse('login success', 'index.html')
-        else:
-            return HttpResponse('enter valid username and password')
+        form = CustomerRegistrationForm(request.POST)
 
-    return render(request, 'login.html')
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password1']
+            user = authenticate(username=username, password=password)
+            login(request, user)
+            request.session['user'] = username
+            return redirect('userauthentication')
+
+    else:
+        form = CustomerRegistrationForm()
+
+    return render(request, 'registration/register.html', {'form': form})
+
+
+def userauthentication(request):
+    if request.session.has_key('user'):
+        username = request.session['user']
+        user = Client.objects.get(username=username)
+        return render(request, 'user.html', {'user': user})
+    return redirect('userpage')
+
+
+def userpage(request):
+    if request.method == 'POST':
+        password = request.POST['password']
+        if request.POST['mobile_phone']:
+            mobile_phone = request.POST['mobile_phone']
+            user = authenticate(username=mobile_phone, password=password)
+        else:
+            email = request.POST['email']
+            mobile_phone = Client.objects.get(email=email).mobile_phone
+            user = authenticate(username=mobile_phone, password=password)
+        if user is not None:
+            if user.is_active:
+                login(request, user)
+                request.session['user'] = user.username
+                return redirect('userauthentication')
+            messages.add_message(request, messages.INFO, 'User is Not Active.')
+            return redirect('userpage')
+        messages.add_message(request, messages.INFO, 'Please Check Your Login Credentials.')
+        return redirect('userpage')
+
+    else:
+        form = AuthenticationForm()
+        return render(request, 'registration/login.html', {'form': form})
 
 
 def search(request):
-    if request.method == 'GET':
-        query = request.GET.get('q')
+    users = New_Portfolio.objects.all()
+    query = request.GET.get('q')
 
-        submitbutton = request.GET.get('submit')
+    if query:
+        users = users.objects.filter(
+            Q(sub_category__icontains=query) |
+            Q(location__icontains=query) |
+            Q(category__icontains=query)).distinct()
+        # remove duplicates
+    context = {'users': users}
 
-        if query is not None:
-            lookups = Q(category__icontains=query) | Q(sub_category=query)
+    return render(request, 'listingPage.html', context)
 
-            results = Portfolio.objects.filter(lookups).distinct()
+    #  return render(request,'index.html')
 
-            context = {'results': results,
-                       'submitbutton': submitbutton}
 
-            return render(request, '', context)
+def user_list(request, category_id, user_type):
+    sub_category = Sub_category.objects.get(name=user_type, category=category_id)
+    users = New_Portfolio.objects.filter(sub_category=sub_category)
+    page = request.GET.get('page', 1)
 
+    paginator = Paginator(users, 3)
+    try:
+        users = paginator.page(page)
+    except PageNotAnInteger:
+        users = paginator.page(1)
+    except EmptyPage:
+        users = paginator.page(paginator.num_pages)
+    return render(request, 'listingPage.html', {'users': users})
+
+
+def login_register(request):
+    return render(request, 'registration/login.html')
+
+
+def portfolio(request):
+    # form = New_PortfolioForm()
+    # return render(request,'portfolio.html',{'form':form})
+    if request.session.has_key('user'):
+        if request.method == 'POST':
+            user = request.session['user']
+            user = Client.objects.get(username=user)
+            form = New_PortfolioForm(request.POST, request.FILES)
+            # import pdb;pdb.set_trace()
+            if form.is_valid():
+                user_portfolio = form.save(commit=False)
+                user_portfolio.user = user
+                user_portfolio.save()
+                return HttpResponse('details saved successfully.')
+            return HttpResponse('error')
         else:
-            return render(request, '')
-
-    else:
-        return render(request, 'index.html')
-
+            form = New_PortfolioForm()
+            return render(request, 'portfolio.html', {'form': form})

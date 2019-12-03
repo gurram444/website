@@ -78,11 +78,15 @@ class Customer(models.Model):
     password = models.CharField(max_length=20)
     mobile_phone = models.CharField(verbose_name="Mobile phone", max_length=10, unique=True, blank=False, null=True)
 
+    def __str__(self):
+        return self.username
 
 class Client(AbstractUser):
     mobile_phone = models.CharField(verbose_name="Mobile phone", max_length=10, unique=True, blank=False, null=True)
     USERNAME_FIELD = 'mobile_phone'
 
+    def __str__(self):
+        return self.username
 
 
 class Category(models.Model):
@@ -90,7 +94,6 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
-
 
 
 class Sub_category(models.Model):
@@ -125,29 +128,6 @@ class Project(models.Model):
     file_size = models.CharField(max_length=20)
 
 
-class Portfolio(models.Model):
-    user = models.OneToOneField(Client, on_delete=models.CASCADE)
-    experience = models.CharField(verbose_name="Experience", max_length=10, choices=EXPERIENCE_CHOICES, blank=False,
-                                  null=False)
-    qualification = models.CharField(verbose_name="Qualification", max_length=20, choices=QUALIFICATION_CHOICES,
-                                     blank=False, null=False)
-    budget = models.CharField(verbose_name="Budget", max_length=20, choices=BUDGET_CHOICES)
-    prefix = models.CharField(verbose_name="Prefix", max_length=3, choices=PREFIX_CHOICES)
-    gender = models.CharField(verbose_name="Gender", max_length=10, choices=GENDER_CHOICES)
-    mobile_phone = models.CharField(verbose_name="Mobile phone", max_length=10, unique=True, blank=False, null=True)
-    secondary_phone = models.CharField(verbose_name="Secondary phone", max_length=10, unique=True, blank=False,
-                                       null=True)
-    tel_phone = models.CharField(verbose_name="Tele phone", max_length=10, unique=True, blank=False,
-                                 null=True)
-    date_of_birth = models.DateField(verbose_name='Date of Birth', null=True, blank=True)
-    about_me = models.CharField(verbose_name="About me ", blank=True, max_length=250)
-    profile_pic = models.ImageField(upload_to=content_file_name, blank=True, null=True, verbose_name="Profile Picture")
-    location = models.CharField(verbose_name="location", max_length=30)
-    #client = models.BooleanField(verbose_name="Client", default=0)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    sub_category = models.ForeignKey(Sub_category, on_delete=models.CASCADE)
-
-
 class New_Portfolio(models.Model):
     user = models.OneToOneField(Client,on_delete=models.CASCADE)
     experience = models.CharField(verbose_name="Experience", max_length=10, choices=EXPERIENCE_CHOICES, blank=False,
@@ -166,7 +146,6 @@ class New_Portfolio(models.Model):
     about_me = models.CharField(verbose_name="About me ", blank=True, max_length=250)
     profile_pic = models.ImageField(upload_to='media/')
     location = models.CharField(verbose_name="location", max_length=30)
-    #client = models.BooleanField(verbose_name="Client", default=0)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     sub_category = models.ForeignKey(Sub_category, on_delete=models.CASCADE)
 
@@ -221,12 +200,24 @@ class AppointmentScheduler(models.Model):
     slots_booked = models.ForeignKey(Appointment, on_delete=models.CASCADE)
 
 
-class FeedBackRating(models.Model):
+class FeedBack(models.Model):
     user = models.ForeignKey(Client, related_name="client_feedback", on_delete=models.CASCADE)
     customer = models.ForeignKey(Customer, related_name="Customer_feedback", on_delete=models.CASCADE)
     feedback = models.CharField(verbose_name="Feedback", max_length=250)
-    rating = models.PositiveIntegerField(null=True, choices=RATING_CHOICES,blank=False, default=0)
-    date_time = models.DateField(verbose_name="Actual BRS Start Date", blank=True, null=True)
+    date_time = models.DateTimeField(verbose_name="Actual BRS Start Date", auto_now_add = True)
+
+    def __str__(self):
+        return self.feedback
+
+
+class Rating(models.Model):
+    user = models.ForeignKey(Client, related_name="client_rating", on_delete=models.CASCADE)
+    customer = models.ForeignKey(Customer, related_name="Customer_rating", on_delete=models.CASCADE)
+    rating = models.PositiveIntegerField(null=True, choices=RATING_CHOICES, blank=False, default=0)
+    date_time = models.DateField(verbose_name="Actual BRS Start Date",auto_now_add =True)
+
+    def __str__(self):
+        return self.rating
 
 
 class Parameters(models.Model):
@@ -234,3 +225,26 @@ class Parameters(models.Model):
     clicks = models.CharField(verbose_name="clicks", max_length=10)
     date_time = models.DateField(verbose_name="Actual BRS Start Date", blank=True, null=True)
 
+
+class Questions(models.Model):
+
+    client = models.ForeignKey(Client, on_delete=models.CASCADE)
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    question_title = models.TextField(max_length=200)
+    question_description=models.TextField(max_length=200)
+    pub_date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.question_title
+
+
+class Answers(models.Model):
+
+    question=models.ForeignKey(Questions,on_delete=models.CASCADE)
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    client = models.ForeignKey(Client, on_delete=models.CASCADE)
+    answer = models.TextField(max_length=200)
+    pub_date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.answer

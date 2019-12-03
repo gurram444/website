@@ -116,6 +116,10 @@ def userpage(request):
         return render(request, 'registration/login.html', {'form': form})
 
 
+def logon(request):
+    pass
+
+
 def search(request):
     users = New_Portfolio.objects.all()
     query = request.GET.get('q')
@@ -148,6 +152,11 @@ def user_list(request, category_id, user_type):
     return render(request, 'listingPage.html', {'users': users})
 
 
+def view_profile(request,user_id):
+    user=New_Portfolio.objects.get(user_id=user_id)
+    return render(request, 'viewprofile.html', {'user': user})
+
+
 def login_register(request):
     return render(request, 'registration/login.html')
 
@@ -170,3 +179,42 @@ def portfolio(request):
         else:
             form = New_PortfolioForm()
             return render(request, 'portfolio.html', {'form': form})
+
+
+def feedback(request):
+    form = FeedbackForm()
+    if request.method == 'POST':
+        form = FeedbackForm(request.POST)
+        if form.is_valid():
+            form.save(commit=True)
+        return redirect('view_profile')
+    return render(request, 'viewprofile.html', {'form': form})
+
+
+def getfeedback(request,user_id):
+    feedback_list = FeedBack.objects.filter(user_id=user_id)
+    return render(request, 'feedback.html', {'feedback': feedback_list})
+
+
+def question(request):
+    form = QuestionForm()
+    if request.method == 'POST':
+        form = QuestionForm(request.POST)
+        if form.is_valid():
+            form.save(commit=True)
+    return render(request, 'Q&A.html', {'form': form})
+
+
+def answer(request):
+   question_id=request.POST('question')
+   customer_id=request.POST('customer')
+   client_id=request.POST('client')
+   answer=request.POST('answer')
+   pub_date=request.POST('pub_date')
+   Answers(question=question_id,customer=customer_id,client=client_id,answer=answer,pub_date=pub_date).save()
+   messages.error(request,'answer submitted successfully')
+   return render(request,'Q&A.html')
+
+def AboutDesigner(request,user_id):
+    about=New_Portfolio.objects.filter(user_id=user_id)
+    return render(request,'about.html',{'about':about})

@@ -14,4 +14,5 @@ urlpatterns = [
     path('search/',views.search, name='search'),
     path('portfolio/',views.portfolio,name='portfolio'),
     path('userlist/<int:category_id>/<str:user_type>/',views.user_list, name='user_list'),
+    path('view_profile/(?P<user_id>\d+)/' ,views.view_profile,name='view_profile'),
 ]+ static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

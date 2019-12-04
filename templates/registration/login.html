@@ -50,7 +50,7 @@
 					<ul class="nav navbar-nav navbar-right">
 						<li><a href="/accounts/login">Login for BusIness</a></li>
 						<li><a href="{% url 'customerregister' %}">Customer Registration</a></li>
-                        <li><a href='{% url "clientregister" %}'>Client Registration</a></li>
+
 					</ul>
 				</div>
 			</div>
@@ -73,11 +73,11 @@
                 </div>
                 <div class="col-md-5 login-form-2">
                     <h3>Login to IUNGO</h3>
-                    <form action="{% url 'login' %}" method="POST" enctype="multipart/form-data" class="" role="form">
+                    <form action="{% url 'customerpage' %}" method="POST" enctype="multipart/form-data" class="" role="form">
                        {% csrf_token %}
                       <div class="form-group phoneForms">
                           <label for="phone">Phone Number</label>
-                          <input type="tel" class="form-control" id="phone" name="mobile_phone" placeholder="Phone Number "  value="" />
+                          <input type="tel" class="form-control" id="phone" name="phone_number" placeholder="Phone Number "  value="" />
                           <p class="or">(or)</p>
                       </div>
                         <div class="form-group">

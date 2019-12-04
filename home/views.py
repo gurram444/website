@@ -64,25 +64,6 @@ def clientcreation(request):
     return render(request, 'registration/register.html', {'form': form})
 
 
-def customercreation(request):
-    if request.method == 'POST':
-        form = CustomerRegistrationForm(request.POST)
-
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password1']
-            user = authenticate(username=username, password=password)
-            login(request, user)
-            request.session['user'] = username
-            return redirect('userauthentication')
-
-    else:
-        form = CustomerRegistrationForm()
-
-    return render(request, 'registration/register.html', {'form': form})
-
-
 def userauthentication(request):
     if request.session.has_key('user'):
         username = request.session['user']
@@ -116,8 +97,33 @@ def userpage(request):
         return render(request, 'registration/login.html', {'form': form})
 
 
-def logon(request):
-    pass
+def customercreation(request):
+    if request.method == 'POST':
+        phone_number = request.POST['phone_number']
+        email = request.POST['email']
+        password = request.POST['password']
+        con_password = request.POST['con_password']
+        data = Customer(phone_number=phone_number, email=email, password=password, con_password=con_password)
+        data.save()
+        return render(request, 'registration/login.html')
+    return render(request, 'registration/register1.html')
+
+
+def customerpage(request):
+    if request.method == 'POST':
+        password = request.POST['password']
+        if request.POST['phone_number']:
+            mobile_phone = request.POST['phone_number']
+            user = Customer(phone_number=mobile_phone, password=password)
+        else:
+            email = request.POST['email']
+            mobile_phone = Customer.objects.get(email=email).phone_number
+            user = Customer(email=mobile_phone, password=password)
+        if user is not None:
+            return render(request, 'index.html')
+        else:
+            return redirect('customerpage')
+    return render(request, 'registration/login.html')
 
 
 def search(request):
@@ -134,7 +140,7 @@ def search(request):
 
     return render(request, 'listingPage.html', context)
 
-    #  return render(request,'index.html')
+    # return render(request,'index.html')
 
 
 def user_list(request, category_id, user_type):
@@ -152,8 +158,9 @@ def user_list(request, category_id, user_type):
     return render(request, 'listingPage.html', {'users': users})
 
 
-def view_profile(request,user_id):
-    user=New_Portfolio.objects.get(user_id=user_id)
+def view_profile(request, user_id):
+    # import pdb;pdb.set_trace()
+    user = New_Portfolio.objects.get(user_id=user_id)
     return render(request, 'viewprofile.html', {'user': user})
 
 
@@ -191,7 +198,7 @@ def feedback(request):
     return render(request, 'viewprofile.html', {'form': form})
 
 
-def getfeedback(request,user_id):
+def getfeedback(request, user_id):
     feedback_list = FeedBack.objects.filter(user_id=user_id)
     return render(request, 'feedback.html', {'feedback': feedback_list})
 
@@ -206,15 +213,21 @@ def question(request):
 
 
 def answer(request):
-   question_id=request.POST('question')
-   customer_id=request.POST('customer')
-   client_id=request.POST('client')
-   answer=request.POST('answer')
-   pub_date=request.POST('pub_date')
-   Answers(question=question_id,customer=customer_id,client=client_id,answer=answer,pub_date=pub_date).save()
-   messages.error(request,'answer submitted successfully')
-   return render(request,'Q&A.html')
+    question_id = request.POST('question')
+    customer_id = request.POST('customer')
+    client_id = request.POST('client')
+    answer = request.POST('answer')
+    pub_date = request.POST('pub_date')
+    Answers(question=question_id, customer=customer_id, client=client_id, answer=answer, pub_date=pub_date).save()
+    messages.error(request, 'answer submitted successfully')
+    return render(request, 'Q&A.html')
 
-def AboutDesigner(request,user_id):
-    about=New_Portfolio.objects.filter(user_id=user_id)
-    return render(request,'about.html',{'about':about})
+
+def gey_answer(request, user_id):
+    ans = Answers.objects.filter(client_id=user_id)
+    return render(request, "Q&A.html", {'ans': ans})
+
+
+def AboutDesigner(request, user_id):
+    about = New_Portfolio.objects.filter(user_id=user_id)
+    return render(request, 'about.html', {'about': about})

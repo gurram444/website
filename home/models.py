@@ -73,13 +73,13 @@ def content_file_name(instance, filename):
 
 
 class Customer(models.Model):
-    username = models.CharField(max_length=20)
+    phone_number = models.CharField(verbose_name="Mobile phone", max_length=10, unique=True, blank=False, null=True)
     email = models.EmailField()
     password = models.CharField(max_length=20)
-    mobile_phone = models.CharField(verbose_name="Mobile phone", max_length=10, unique=True, blank=False, null=True)
-
+    con_password=models.CharField(max_length=20)
     def __str__(self):
-        return self.username
+        return self.id
+
 
 class Client(AbstractUser):
     mobile_phone = models.CharField(verbose_name="Mobile phone", max_length=10, unique=True, blank=False, null=True)

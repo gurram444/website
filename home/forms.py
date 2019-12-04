@@ -4,15 +4,18 @@ from .models import *
 
 
 class CustomerRegistrationForm(forms.ModelForm):
-      class Meta:
-          model = Customer
-          fields = '__all__'
+    class Meta:
+        model = Customer
+        fields = ['phone_number', 'email', 'password']
+
+    def __init__(self, *args, **kwargs):
+        super(CustomerRegistrationForm, self).__init__(*args, **kwargs)
 
 
 class ClientRegistrationForm(UserCreationForm):
     class Meta:
         model = Client
-        fields = ['username', 'mobile_phone','email']
+        fields = ['username', 'mobile_phone', 'email']
 
     def __init__(self, *args, **kwargs):
         super(ClientRegistrationForm, self).__init__(*args, **kwargs)
@@ -33,16 +36,17 @@ class New_PortfolioForm(forms.ModelForm):
 
 class FeedbackForm(forms.ModelForm):
     class Meta:
-        model=FeedBack
-        fields=['user','customer','feedback']
+        model = FeedBack
+        fields = ['user', 'customer', 'feedback']
 
 
 class QuestionForm(forms.ModelForm):
     class Meta:
-        model=Questions
-        fields='__all__'
+        model = Questions
+        fields = '__all__'
+
 
 class AnswerForm(forms.ModelForm):
     class Meta:
-        model= Answers
-        fields='__all__'
+        model = Answers
+        fields = '__all__'

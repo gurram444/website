@@ -1,7 +1,115 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bc40c3d5-92d3-4678-8393-c935f0f4a35c" name="Default Changelist" comment="listing" />
+    <list default="true" id="bc40c3d5-92d3-4678-8393-c935f0f4a35c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/home/filters.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/home/serializers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/user.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/home.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/index1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/searchlist1.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/viewprofile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/home/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/home/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/home/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/home/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/bootstrap/css/bootstrap-theme.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/bootstrap/css/bootstrap-theme.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/bootstrap/css/bootstrap-theme.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/bootstrap/css/bootstrap-theme.min.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/bootstrap/css/bootstrap.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/bootstrap/css/bootstrap.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/bootstrap/css/bootstrap.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/bootstrap/css/bootstrap.min.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/bootstrap/fonts/glyphicons-halflings-regular.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/bootstrap/js/bootstrap.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/bootstrap/js/bootstrap.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/bootstrap/js/npm.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/animate.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/main.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/font-awesome/css/font-awesome.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/font-awesome/css/font-awesome.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/font-awesome/fonts/fontawesome-webfont.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/font-awesome/less/animated.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/font-awesome/less/bordered-pulled.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/font-awesome/less/core.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/font-awesome/less/fixed-width.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/font-awesome/less/font-awesome.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/font-awesome/less/icons.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/font-awesome/less/larger.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/font-awesome/less/list.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/font-awesome/less/mixins.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/font-awesome/less/path.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/font-awesome/less/rotated-flipped.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/font-awesome/less/screen-reader.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/font-awesome/less/stacked.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/font-awesome/less/variables.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/font-awesome/scss/_animated.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/font-awesome/scss/_bordered-pulled.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/font-awesome/scss/_core.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/font-awesome/scss/_fixed-width.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/font-awesome/scss/_icons.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/font-awesome/scss/_larger.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/font-awesome/scss/_list.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/font-awesome/scss/_mixins.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/font-awesome/scss/_path.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/font-awesome/scss/_rotated-flipped.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/font-awesome/scss/_screen-reader.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/font-awesome/scss/_stacked.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/font-awesome/scss/_variables.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/font-awesome/scss/font-awesome.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/Architects.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/Banner.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/BuildersandDevelopers.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/Commercial.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/Contractors.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/Green Design.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/Industrial.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/InteriorDesigners.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/Landscape.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/Location.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/Public.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/Residential.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/Search.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/appointments.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/backgrounds/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/backgrounds/12.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/backgrounds/1@2x.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/backgrounds/log_page_banner.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/calendar.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/drop-down-arrow.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/feedbacks.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/iungocloud.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/logo@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/media/F.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/media/G.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/media/in.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/media/tw.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/notification.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/overview.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/profilesettings.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/reports.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/user.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/img/world_map.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/jquery-1.11.1.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/jquery-1.11.1.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/jquery.backstretch.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/jquery.backstretch.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/main.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/placeholder.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/retina-1.1.0.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/retina-1.1.0.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/scripts.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/wow.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/wow.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/listingPage.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/listingPage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/registration/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/registration/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/registration/register1.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/registration/register1.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/searchlistpage.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/searchlistpage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/settings.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,6 +137,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
+        <option value="JavaScript File" />
         <option value="HTML File" />
       </list>
     </option>
@@ -43,7 +152,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/templates/registration" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/static/img" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
@@ -52,11 +161,11 @@
       <recent name="$PROJECT_DIR$/templates" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/templates/registration" />
+      <recent name="$PROJECT_DIR$/static/img" />
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/templates" />
+      <recent name="$PROJECT_DIR$/templates/registration" />
       <recent name="$PROJECT_DIR$/static" />
-      <recent name="$PROJECT_DIR$/home" />
-      <recent name="$PROJECT_DIR$/home/migrations" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -108,7 +217,7 @@
       <option name="presentableId" value="Default" />
       <updated>1574846514644</updated>
       <workItem from="1574846527456" duration="11994000" />
-      <workItem from="1574914976668" duration="141305000" />
+      <workItem from="1574914976668" duration="180059000" />
     </task>
     <task id="LOCAL-00001" summary="listing">
       <created>1575288567935</created>
@@ -138,7 +247,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575456356779</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="listing">
+      <created>1575456423744</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1575456423744</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -162,10 +278,10 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="django-line">
-          <url>file://$PROJECT_DIR$/templates/listingPage.html</url>
-          <line>169</line>
-          <option name="timeStamp" value="2" />
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/home/views.py</url>
+          <line>134</line>
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

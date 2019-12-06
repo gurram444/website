@@ -1,7 +1,10 @@
 from django.shortcuts import render, render_to_response, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import messages
 from .forms import *
+from django.http import JsonResponse
+from rest_framework.generics import ListAPIView
+from .serializers import PortfolioSerializers
 from django.contrib.auth.forms import AuthenticationForm
 from .models import *
 from django.contrib.auth import authenticate, login
@@ -120,27 +123,40 @@ def customerpage(request):
             mobile_phone = Customer.objects.get(email=email).phone_number
             user = Customer(email=mobile_phone, password=password)
         if user is not None:
-            return render(request, 'index.html')
+            return render(request, 'index1.html', {'user': user})
         else:
             return redirect('customerpage')
     return render(request, 'registration/login.html')
 
 
 def search(request):
-    users = New_Portfolio.objects.all()
-    query = request.GET.get('q')
+    if request.method == 'GET':
+        query = request.GET.get('q')
+        if query:
+            users = New_Portfolio.objects.filter(Q(location__icontains=query) |
+                                                 Q(sub_category__name__icontains=query) |
+                                                 Q(category__name__icontains=query))
 
-    if query:
-        users = users.objects.filter(
-            Q(sub_category__icontains=query) |
-            Q(location__icontains=query) |
-            Q(category__icontains=query)).distinct()
-        # remove duplicates
-    context = {'users': users}
+            if users:
+                return render(request, 'searchlistpage.html', {'users': users})
 
-    return render(request, 'listingPage.html', context)
+            else:
+                messages.error(request, 'no results found')
 
-    # return render(request,'index.html')
+        else:
+            users = New_Portfolio.objects.all()
+            page = request.GET.get('page', 1)
+
+            paginator = Paginator(users, 3)
+            try:
+                users = paginator.page(page)
+            except PageNotAnInteger:
+                users = paginator.page(1)
+            except EmptyPage:
+                users = paginator.page(paginator.num_pages)
+            return render(request, 'searchlistpage.html', {'users': users})
+
+    #return render(request, 'index.html')
 
 
 def user_list(request, category_id, user_type):
@@ -158,8 +174,37 @@ def user_list(request, category_id, user_type):
     return render(request, 'listingPage.html', {'users': users})
 
 
+class Listing(ListAPIView):
+    serializer_class = PortfolioSerializers
+
+    def get_queryset(self):
+        querylist = New_Portfolio.objects.all()
+        # specialization = self.request.query_params.get('specialization', None)
+        location = self.request.query_params.get('location', None)
+        sort_by = self.request.query_params.get('sort_by', None)
+        if location:
+            querylist = querylist.filter(location=location)
+        if sort_by == "experience":
+            querylist = querylist.order_by("experience")
+        # elif sort_by == "location":
+        #     querylist = querylist.order_by("location")
+        elif sort_by == "budget":
+            querylist = querylist.order_by("budget")
+        return querylist
+
+
+def getlocation(request):
+    if request.method == "GET" and request.is_ajax():
+        locations = New_Portfolio.objects.exclude(location__isnull=True). \
+            exclude(location__exact='').order_by('location').values_list('location').distinct()
+        locations = [i[0] for i in list(locations)]
+        data = {
+            "locations": locations,
+        }
+        return JsonResponse(data, status=200)
+
+
 def view_profile(request, user_id):
-    # import pdb;pdb.set_trace()
     user = New_Portfolio.objects.get(user_id=user_id)
     return render(request, 'viewprofile.html', {'user': user})
 

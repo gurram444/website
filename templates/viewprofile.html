@@ -26,7 +26,7 @@
    </head>
    <body>
       <!-- Top menu -->
-      <nav class="navbar navbar-inverse" role="navigation">
+      <nav class="navbar navbar-inverse">
          <div class="container">
             <div class="navbar-header">
                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#top-navbar-1">
@@ -41,7 +41,7 @@
             <div class="collapse navbar-collapse" id="top-navbar-1">
                <ul class="nav navbar-nav navbar-right">
                   <li><a href="/accounts/login">Login for BusIness</a></li>
-                  <li><a href="/customerregister">Login / Register</a></li>
+                  <li><a href="/customerpage">Login / Register</a></li>
                </ul>
             </div>
          </div>
@@ -60,11 +60,11 @@
                   <div class="col-sm-4 noPadding">
                      <div class="form-group">
                         <div class="input-group inputIcon">
-                           <img role="img"  src="/static/img/Location.svg" />
+                           <img  src="/static/img/Location.svg" alt="location" />
                            <input class="form-control" placeholder="Location" type="text" />
                            <div class="input-group-btn">
                               <button class="btn btn-lg customSearchBtn" type="submit">
-                              <img role="img" style="margin-left: 20px;" src="/static/img/Search.svg" />
+                              <img style="margin-left: 20px;" src="/static/img/Search.svg" alt="search" />
                               </button>
                            </div>
                         </div>
@@ -78,7 +78,7 @@
                <p class="sortBy">Sort By</p>
             </div>
             <div class="select">
-               <select name="slct" id="slct">
+               <select name="slct" id="slct1">
                   <option selected disabled>Specialization</option>
                   <option value="1">zzzzzzzz</option>
                   <option value="2">xxxxxxxx</option>
@@ -86,7 +86,7 @@
                </select>
             </div>
             <div class="select">
-               <select name="slct" id="slct">
+               <select name="slct" id="slct2">
                   <option selected disabled>Experience</option>
                   <option value="1">5</option>
                   <option value="2">10</option>
@@ -103,128 +103,162 @@
          </div>
       </nav>
       <!-- path end -->
-      <!-- filter navigation start -->
-      <div class="listing_filtersProfile">
+      <!-- client profile view start -->
       <div class="container-fluid">
          <div class="row">
-            <div class="col-sm-3 col-xs-12">
-               <div class="listing_filter_bar">
-                  <h4 class="heading">Filters</h4>
-                  <p class="head">Style</p>
-                  <ul class="loginFormCheck filtersListStyles">
-                     <li>
-                        <input type="checkbox" id="morden_style">
-                        <label for="morden_style">Mordern</label>
-                     </li>
-                     <li>
-                        <input type="checkbox" id="traditional_style">
-                        <label for="traditional_style">Traditional</label>
-                     </li>
-                     <li>
-                        <input type="checkbox" id="Bohemian_style">
-                        <label for="Bohemian_style">Bohemian</label>
-                     </li>
-                  </ul>
-                  <hr>
-                  <p class="head">Budget</p>
-                  <div class="mainslider">
-                     <div class="range-slider">
-                        <input value="25000" min="0" max="120000" step="500" type="range"/>
-                        <input value="50000" min="0" max="120000" step="500" type="range"/>
-                        <svg width="100%" height="24">
-                           <line x1="4" y1="0" x2="300" y2="0" stroke="#444" stroke-width="12" stroke-dasharray="1 28"></line>
-                        </svg>
-                        <span class="valueInputs">
-                        <input type="number" value="25000" min="0" max="120000"/>	to
-                        <input type="number" value="50000" min="0" max="120000"/>
-                        </span>
+            <div class="col-xs-12">
+               <div class="clientProfileviewBanner">
+                  <div class="clientUserprofile">
+                     <div class="clientUser">
+                        <img class="user" src="{{ user.profile_pic.url }}" alt="alexUser">
                      </div>
-                  </div>
-                  <hr>
-                  <p class="head">Rating</p>
-                  <ul class="loginFormCheck filtersListStyles">
-                     <li>
-                        <input type="checkbox" id="2andAbove">
-                        <label for="2andAbove">2 &#9733; and above</label>
-                     </li>
-                     <li>
-                        <input type="checkbox" id="3andAbove">
-                        <label for="3andAbove">3 &#9733; and above</label>
-                     </li>
-                     <li>
-                        <input type="checkbox" id="5only">
-                        <label for="5only">5 &#9733; only</label>
-                     </li>
-                  </ul>
-               </div>
-            </div>
-            <div class="col-sm-9 col-xs-12">
-             {% for user in users %}
-               <div class="mainListingcard">
-                  <div class="profileImg">
-                     <img src="{{ user.profile_pic.url }}" alt="user1">
-                  </div>
-                  <div class="profile_textfield">
                      <div class="userDesignation">
-                        <p id="Name">{{ user.user.username }}</p>
-                        <small>{{user.category}}- {{user.sub_category}}</small>
-                     </div>
-                     <div class="Userdetails">
-                        <div class="left">
-                           <p><img src="/static/img/listingPage/Experience.png"> {{ user.qualification }} </p>
-                           <p><img src="/static/img/listingPage/Timing.png">  {{ user.experience }} Years</p>
-                           <p>{{ user.location }}</p>
-                        </div>
-                        <div class="right">
-                           <p>125+ Reviews</p>
-                           <p>50 Completed Projects</p>
-                           <p>{{user.budget}}</p>
-                        </div>
-                        <br>
-                        <div style="float: right">
-                           <a href="{% url 'view_profile' user.user_id %}">
-                           <button class="viewProfile" type="button" name="button">ViewProfile</button></a>
-                           <button class="bookAppointment" type="button" name="button">Book Appointment</button>
-                        </div>
+                        <p class="clientName">{{ user.user }}</p>
+                        <p><button id="clientDesignation" type="button" name="button">{{user.category}}</button></p>
+                        <p class="standpoint">{{user.sub_category}} </p>
                      </div>
                   </div>
-               </div>
-{% endfor %}
-
-            </div>
-            <div class="row">
-               <div class="com-sm12 col-xs-12">
-                  <nav class="mainPagination" aria-label="Page navigation example">
-                     {% if users.has_other_pages %}
-  <ul class="pagination">
-    {% if users.has_previous %}
-      <li><a href="?page={{ users.previous_page_number }}">&laquo;</a></li>
-    {% else %}
-      <li class="disabled"><span>&laquo;</span></li>
-    {% endif %}
-    {% for i in users.paginator.page_range %}
-      {% if users.number == i %}
-        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
-      {% else %}
-        <li><a href="?page={{ i }}">{{ i }}</a></li>
-      {% endif %}
-    {% endfor %}
-    {% if users.has_next %}
-      <li><a href="?page={{ users.next_page_number }}">&raquo;</a></li>
-    {% else %}
-      <li class="disabled"><span>&raquo;</span></li>
-    {% endif %}
-  </ul>
-{% endif %}
-                  </nav>
+                  <div class="bookAppointment">
+                     Book Appointment
+                  </div>
                </div>
             </div>
          </div>
       </div>
-      <!-- filter navigation end -->
+      <div class="container-fluid">
+         <div class="row">
+            <div class="col-xs-12 col-lg-2">
+               <button class="btnlist active" type="button" name="button">About Designer</button>
+            </div>
+            
+            <div class="col-xs-12 col-lg-2">
+               <button class="btnlist" type="button" name="button">Project Photos</button>
+            </div>
+            <div class="col-xs-12 col-lg-2">
+               <button class="btnlist" type="button" name="button">About Designer</button>
+            </div>
+         </div>
+      </div>
+      <div class="container-fluid">
+         <div class="row clientProvieInfoBg">
+            <div class="col-xs-12 col-lg-12">
+               <div class="row">
+                  <ul class="ClientProfile-menu">
+                     <li><a href="#">All</a></li>
+                     <li><a href="#">Home Interior</a></li>
+                     <li><a href="#">Office Interior</a></li>
+                     <li><a href="#">Modern Interior</a></li>
+                     <li><a href="#">Luxury</a> </li>
+                     <li><a href="#">Luxury</a></li>
+                     <li><a href="#">306 Reviews &nbsp;
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        </a>
+                     </li>
+                  </ul>
+               </div>
+               <div class="row">
+                  <div style="padding: 20px;" class="col-xs-12 col-lg-12">
+                     <h4 style="color: #20c3db;">Info</h4>
+                     <p>
+                        Engineering Graduate with 22 years of experience in wood, sourcing and Interior design industry. When it comes to the quality of wood, he is authority in the subject. He overseas technical scope of all project across Bangalore. He is well known in the wood industry and has written numerous article and published papers in leading journals. He presently coaches the team in our factory on quality standards and on best practices to be followed in the interior design industry. He is a soft spoken person with lot of patience.
+                     </p>
+                  </div>
+               </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="container-fluid clientprofileContainer">
+           <div style="padding: 20px 10px;" class="row">
+              <div class="col-xs-12 col-lg-6">
+                 <div class="leftContent">
+                    <embed src="/static/img/clientProfileview/Experience.svg" alt="Experience">
+                 </div>
+                 <div class="rightContent">
+                    <h4>Experience</h4>
+                    <p>B. Arch  - 2013</p>
+                 </div>
+                 <p style="clear:both;"></p>
+                 <hr>
+              </div>
+              <div class="col-xs-12 col-lg-6">
+                 <div class="leftContent">
+                    <embed src="/static/img/clientProfileview/Areas_Location.svg" alt="Areas">
+                 </div>
+                 <div class="rightContent">
+                    <h4>Areas Served</h4>
+                    <p>Bangalore and Hyderabad</p>
+                 </div>
+                 <p style="clear:both;"></p>
+                 <hr>
+              </div>
+              <div class="col-xs-12 col-lg-6">
+                 <div class="leftContent">
+                    <embed src="/static/img/clientProfileview/Skillset.svg" alt="Skillset">
+                 </div>
+                 <div class="rightContent">
+                    <h4>Skill Set</h4>
+                    <p>3D Rendering, Bathroom Design, Bedroom Design, Colour Consulting, Custom Bathroom Vanities,
+                       Custom Blinds & Shades, Custom Bookcases, Custom Built-ins, Custom Cabinets, Custom Furniture,
+                       Custom Home Bars, Custom Kitchen Cabinets,
+                    </p>
+                 </div>
+              </div>
+              <div class="col-xs-12 col-lg-6">
+                 <div class="leftContent">
+                    <embed src="/static/img/clientProfileview/Awards.svg" alt="Awards">
+                 </div>
+                 <div class="rightContent">
+                    <h4>Awards</h4>
+                    <p>2017 iGen top 50 young Architects and Designers - Architects &
+                       Interiors India <br>
+                       2013 A' Design Award, Italy
+                       <br>
+                       2009 Durian Society Interiors Awards - Retail Design Category
+                       Young Designer
+                    </p>
+                 </div>
+              </div>
+              <div class="col-xs-12 col-lg-6">
+                 <div class="leftContent">
+                    <embed src="/static/img/clientProfileview/JobCost.svg" alt="Skillset">
+                 </div>
+                 <div class="rightContent">
+                    <h4>Typical Job Costs</h4>
+                    <p>&#8377;15 lakh - &#8377;5 crore</p>
+                 </div>
+              </div>
+              <div class="col-xs-12 col-lg-6">
+                 <div class="leftContent">
+                    <embed src="/static/img/clientProfileview/Category.svg" alt="Awards">
+                 </div>
+                 <div class="rightContent">
+                    <h4>Awards</h4>
+                    <p>
+                       Interior Designers & Interior Decorators
+                    </p>
+                 </div>
+              </div>
+           </div>
+        </div>
+
+
+
+
+
+
+
+
+
+      <div style="clear:both;"></div>
+      <!-- client profile view end -->
       <!-- content ended -->
       <!-- Footer -->
-      <footer>
+      <footer class="footer">
          <div class="container">
             <div class="row">
                <div class="col-xs-12 col-md-3">

@@ -1,140 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bc40c3d5-92d3-4678-8393-c935f0f4a35c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/home/migrations/0015_auto_20191209_0825.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/home/migrations/0016_auto_20191211_1241.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/home/send_sms.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/bootstrap/css/bootstrap-theme.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/bootstrap/css/bootstrap-theme.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/bootstrap/css/bootstrap-theme.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/bootstrap/css/bootstrap-theme.min.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/bootstrap/css/bootstrap.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/bootstrap/css/bootstrap.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/bootstrap/css/bootstrap.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/bootstrap/css/bootstrap.min.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/bootstrap/fonts/glyphicons-halflings-regular.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/bootstrap/js/bootstrap.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/bootstrap/js/bootstrap.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/bootstrap/js/npm.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/css/animate.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/css/main.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/css/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/font-awesome/css/font-awesome.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/font-awesome/css/font-awesome.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/font-awesome/fonts/fontawesome-webfont.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/font-awesome/less/animated.less" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/font-awesome/less/bordered-pulled.less" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/font-awesome/less/core.less" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/font-awesome/less/fixed-width.less" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/font-awesome/less/font-awesome.less" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/font-awesome/less/icons.less" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/font-awesome/less/larger.less" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/font-awesome/less/list.less" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/font-awesome/less/mixins.less" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/font-awesome/less/path.less" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/font-awesome/less/rotated-flipped.less" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/font-awesome/less/screen-reader.less" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/font-awesome/less/stacked.less" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/font-awesome/less/variables.less" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/font-awesome/scss/_animated.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/font-awesome/scss/_bordered-pulled.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/font-awesome/scss/_core.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/font-awesome/scss/_fixed-width.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/font-awesome/scss/_icons.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/font-awesome/scss/_larger.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/font-awesome/scss/_list.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/font-awesome/scss/_mixins.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/font-awesome/scss/_path.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/font-awesome/scss/_rotated-flipped.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/font-awesome/scss/_screen-reader.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/font-awesome/scss/_stacked.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/font-awesome/scss/_variables.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/font-awesome/scss/font-awesome.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/Architects.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/Banner.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/BuildersandDevelopers.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/Commercial.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/Contractors.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/Green Design.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/Industrial.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/InteriorDesigners.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/Landscape.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/Location.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/Public.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/Residential.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/Search.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/appointments.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/backgrounds/1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/backgrounds/12.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/backgrounds/1@2x.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/backgrounds/clientProfileviewBG.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/backgrounds/log_page_banner.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/calendar.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/clientProfileview/Areas_Location.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/clientProfileview/Awards.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/clientProfileview/Category.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/clientProfileview/Experience.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/clientProfileview/JobCost.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/clientProfileview/Skillset.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/clientProfileview/gallery/thums1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/clientProfileview/gallery/thums2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/clientProfileview/gallery/thums3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/clientProfileview/gallery/thums4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/clientProfileview/gallery/thums5.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/clientProfileview/gallery/thums6.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/clientProfileview/slideshow.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/drop-down-arrow.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/drop-down-arrow_white.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/feedbacks.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/iungocloud.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/listingPage/Budget.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/listingPage/Education.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/listingPage/Experience.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/listingPage/Project completed.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/listingPage/Rating.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/listingPage/Since.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/listingPage/Timing.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/listingPage/location.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/logo@2x.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/media/F.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/media/G.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/media/in.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/media/tw.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/notification.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/overview.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/profilesettings.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/reports.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/user.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/userImage/user1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/world_map.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/js/jquery-1.11.1.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/js/jquery-1.11.1.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/js/jquery.backstretch.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/js/jquery.backstretch.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/js/main.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/js/placeholder.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/js/retina-1.1.0.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/js/retina-1.1.0.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/js/scripts.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/js/wow.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/js/wow.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/home/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/home/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/home/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/home/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/home/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/home/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/home.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/index1.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index1.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/listingPage.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/listingPage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/registration/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/registration/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/registration/register1.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/registration/register1.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/searchlist1.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/searchlist1.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/searchlistpage.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/searchlistpage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/viewprofile.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewprofile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/settings.py" afterDir="false" />
-    </list>
+    <list default="true" id="bc40c3d5-92d3-4678-8393-c935f0f4a35c" name="Default Changelist" comment="projectpics" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -244,7 +111,7 @@
       <updated>1574846514644</updated>
       <workItem from="1574846527456" duration="11994000" />
       <workItem from="1574914976668" duration="249900000" />
-      <workItem from="1576056795863" duration="13839000" />
+      <workItem from="1576056795863" duration="14150000" />
     </task>
     <task id="LOCAL-00001" summary="listing">
       <created>1575288567935</created>
@@ -288,7 +155,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575635714266</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="projectpics">
+      <created>1576129639938</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1576129639938</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -309,6 +183,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="listing" />
-    <option name="LAST_COMMIT_MESSAGE" value="listing" />
+    <MESSAGE value="projectpics" />
+    <option name="LAST_COMMIT_MESSAGE" value="projectpics" />
   </component>
 </project>

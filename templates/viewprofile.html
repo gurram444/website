@@ -10,6 +10,8 @@
       <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
       <link rel="stylesheet" href="/static/font-awesome/css/font-awesome.min.css">
       <link rel="stylesheet" href="/static/css/animate.css">
+      <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick.min.css'>
+      <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick-theme.min.css'>
       <link rel="stylesheet" href="/static/css/style.css">
       <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
       <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -40,8 +42,8 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="top-navbar-1">
                <ul class="nav navbar-nav navbar-right">
-                  <li><a href="/accounts/login">Login for BusIness</a></li>
-                  <li><a href="/customerpage">Login / Register</a></li>
+                  <li><a href="/clientlogin">Login for BusIness</a></li>
+                  <li><a href="/customerregister">Login / Register</a></li>
                </ul>
             </div>
          </div>
@@ -113,9 +115,9 @@
                         <img class="user" src="{{ user.profile_pic.url }}" alt="alexUser">
                      </div>
                      <div class="userDesignation">
-                        <p class="clientName">{{ user.user }}</p>
-                        <p><button id="clientDesignation" type="button" name="button">{{user.category}}</button></p>
-                        <p class="standpoint">{{user.sub_category}} </p>
+                        <p class="clientName">{{ user.user.username }}</p>
+                        <p><button id="clientDesignation" type="button" name="button">{{ user.category }}</button></p>
+                        <p class="standpoint">{{ user.sub_category }}</p>
                      </div>
                   </div>
                   <div class="bookAppointment">
@@ -128,132 +130,195 @@
       <div class="container-fluid">
          <div class="row">
             <div class="col-xs-12 col-lg-2">
-               <button class="btnlist active" type="button" name="button">About Designer</button>
-            </div>
-            
-            <div class="col-xs-12 col-lg-2">
-               <button class="btnlist" type="button" name="button">Project Photos</button>
+               <button id="aboutDesigner" class="btnlist" type="button" name="button">About Designer</button>
             </div>
             <div class="col-xs-12 col-lg-2">
-               <button class="btnlist" type="button" name="button">About Designer</button>
+                <button id="projectPhotos" class="btnlist" type="button" name="button">Project Photos</button>
+            </div>
+            <div class="col-xs-12 col-lg-2">
+{#                <a href="deginphotos/ {{ user.user_id }}">#}
+                <button id="designPhotos" class="btnlist" type="button" name="button">Design Photos</button>
             </div>
          </div>
       </div>
-      <div class="container-fluid">
-         <div class="row clientProvieInfoBg">
-            <div class="col-xs-12 col-lg-12">
-               <div class="row">
-                  <ul class="ClientProfile-menu">
-                     <li><a href="#">All</a></li>
-                     <li><a href="#">Home Interior</a></li>
-                     <li><a href="#">Office Interior</a></li>
-                     <li><a href="#">Modern Interior</a></li>
-                     <li><a href="#">Luxury</a> </li>
-                     <li><a href="#">Luxury</a></li>
-                     <li><a href="#">306 Reviews &nbsp;
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        </a>
-                     </li>
-                  </ul>
+      <!-- tab 1 start -->
+      <div id="tab-1">
+         <div class="container-fluid">
+            <div class="row clientProvieInfoBg">
+               <div class="col-xs-12 col-lg-12">
+                  <div class="row">
+                     <ul class="ClientProfile-menu">
+                        <li><a href="#">All</a></li>
+                        <li><a href="#">Home Interior</a></li>
+                        <li><a href="#">Office Interior</a></li>
+                        <li><a href="#">Modern Interior</a></li>
+                        <li><a href="#">Luxury</a> </li>
+                        <li><a href="#">Luxury</a></li>
+                        <li><a href="#">306 Reviews &nbsp;
+                           <i class="fa fa-star"></i>
+                           <i class="fa fa-star"></i>
+                           <i class="fa fa-star"></i>
+                           <i class="fa fa-star"></i>
+                           <i class="fa fa-star"></i>
+                           </a>
+                        </li>
+                     </ul>
+                  </div>
+                  <div class="row">
+                     <div style="padding: 20px;" class="col-xs-12 col-lg-12">
+                        <h4 style="color: #20c3db;">Info</h4>
+                        <p>{{ user.about_me }}
+                        </p>
+                     </div>
+                  </div>
                </div>
-               <div class="row">
-                  <div style="padding: 20px;" class="col-xs-12 col-lg-12">
-                     <h4 style="color: #20c3db;">Info</h4>
+            </div>
+         </div>
+         <div class="container-fluid clientprofileContainer">
+            <div style="padding: 20px 10px;" class="row">
+               <div class="col-xs-12 col-lg-6">
+                  <div class="leftContent">
+                     <embed src="/static/img/clientProfileview/Experience.svg" alt="Experience">
+                  </div>
+                  <div class="rightContent">
+                     <h4>Experience</h4>
+                     <p>{{user.experience}}years</p>
+                  </div>
+                  <p style="clear:both;"></p>
+                  <hr>
+               </div>
+               <div class="col-xs-12 col-lg-6">
+                  <div class="leftContent">
+                     <embed src="/static/img/clientProfileview/Areas_Location.svg" alt="Areas">
+                  </div>
+                  <div class="rightContent">
+                     <h4>Areas Served</h4>
+                     <p>{{ user.location }}</p>
+                  </div>
+                  <p style="clear:both;"></p>
+                  <hr>
+               </div>
+               <div class="col-xs-12 col-lg-6">
+                  <div class="leftContent">
+                     <embed src="/static/img/clientProfileview/Skillset.svg" alt="Skillset">
+                  </div>
+                  <div class="rightContent">
+                     <h4>Skill Set</h4>
+                     <p>3D Rendering, Bathroom Design, Bedroom Design, Colour Consulting, Custom Bathroom Vanities,
+                        Custom Blinds & Shades, Custom Bookcases, Custom Built-ins, Custom Cabinets, Custom Furniture,
+                        Custom Home Bars, Custom Kitchen Cabinets,
+                     </p>
+                  </div>
+               </div>
+               <div class="col-xs-12 col-lg-6">
+                  <div class="leftContent">
+                     <embed src="/static/img/clientProfileview/Awards.svg" alt="Awards">
+                  </div>
+                  <div class="rightContent">
+                     <h4>Awards</h4>
+                     <p>2017 iGen top 50 young Architects and Designers - Architects &
+                        Interiors India <br>
+                        2013 A' Design Award, Italy
+                        <br>
+                        2009 Durian Society Interiors Awards - Retail Design Category
+                        Young Designer
+                     </p>
+                  </div>
+               </div>
+               <div class="col-xs-12 col-lg-6">
+                  <div class="leftContent">
+                     <embed src="/static/img/clientProfileview/JobCost.svg" alt="Skillset">
+                  </div>
+                  <div class="rightContent">
+                     <h4>Typical Job Costs</h4>
+                     <p>&#8377;{{ user.budget}} lakh - &#8377;5 crore</p>
+                  </div>
+               </div>
+               <div class="col-xs-12 col-lg-6">
+                  <div class="leftContent">
+                     <embed src="/static/img/clientProfileview/Category.svg" alt="Awards">
+                  </div>
+                  <div class="rightContent">
+                     <h4>Awards</h4>
                      <p>
-                        Engineering Graduate with 22 years of experience in wood, sourcing and Interior design industry. When it comes to the quality of wood, he is authority in the subject. He overseas technical scope of all project across Bangalore. He is well known in the wood industry and has written numerous article and published papers in leading journals. He presently coaches the team in our factory on quality standards and on best practices to be followed in the interior design industry. He is a soft spoken person with lot of patience.
+                        Interior Designers & Interior Decorators
                      </p>
                   </div>
                </div>
             </div>
-          </div>
-        </div>
+         </div>
+      </div>
+      <!-- tab 1 end -->
 
-        <div class="container-fluid clientprofileContainer">
-           <div style="padding: 20px 10px;" class="row">
-              <div class="col-xs-12 col-lg-6">
-                 <div class="leftContent">
-                    <embed src="/static/img/clientProfileview/Experience.svg" alt="Experience">
-                 </div>
-                 <div class="rightContent">
-                    <h4>Experience</h4>
-                    <p>B. Arch  - 2013</p>
-                 </div>
-                 <p style="clear:both;"></p>
-                 <hr>
-              </div>
-              <div class="col-xs-12 col-lg-6">
-                 <div class="leftContent">
-                    <embed src="/static/img/clientProfileview/Areas_Location.svg" alt="Areas">
-                 </div>
-                 <div class="rightContent">
-                    <h4>Areas Served</h4>
-                    <p>Bangalore and Hyderabad</p>
-                 </div>
-                 <p style="clear:both;"></p>
-                 <hr>
-              </div>
-              <div class="col-xs-12 col-lg-6">
-                 <div class="leftContent">
-                    <embed src="/static/img/clientProfileview/Skillset.svg" alt="Skillset">
-                 </div>
-                 <div class="rightContent">
-                    <h4>Skill Set</h4>
-                    <p>3D Rendering, Bathroom Design, Bedroom Design, Colour Consulting, Custom Bathroom Vanities,
-                       Custom Blinds & Shades, Custom Bookcases, Custom Built-ins, Custom Cabinets, Custom Furniture,
-                       Custom Home Bars, Custom Kitchen Cabinets,
-                    </p>
-                 </div>
-              </div>
-              <div class="col-xs-12 col-lg-6">
-                 <div class="leftContent">
-                    <embed src="/static/img/clientProfileview/Awards.svg" alt="Awards">
-                 </div>
-                 <div class="rightContent">
-                    <h4>Awards</h4>
-                    <p>2017 iGen top 50 young Architects and Designers - Architects &
-                       Interiors India <br>
-                       2013 A' Design Award, Italy
-                       <br>
-                       2009 Durian Society Interiors Awards - Retail Design Category
-                       Young Designer
-                    </p>
-                 </div>
-              </div>
-              <div class="col-xs-12 col-lg-6">
-                 <div class="leftContent">
-                    <embed src="/static/img/clientProfileview/JobCost.svg" alt="Skillset">
-                 </div>
-                 <div class="rightContent">
-                    <h4>Typical Job Costs</h4>
-                    <p>&#8377;15 lakh - &#8377;5 crore</p>
-                 </div>
-              </div>
-              <div class="col-xs-12 col-lg-6">
-                 <div class="leftContent">
-                    <embed src="/static/img/clientProfileview/Category.svg" alt="Awards">
-                 </div>
-                 <div class="rightContent">
-                    <h4>Awards</h4>
-                    <p>
-                       Interior Designers & Interior Decorators
-                    </p>
-                 </div>
-              </div>
-           </div>
-        </div>
+      <div class="GalleryBg" id="tab-2">
 
 
+         <div class="container-fluid">
+            <div class="row mainGallery">
+               <!-- thumbnail 1 -->
+                {% for photo in users %}
+               <div class="col-xs-12 col-sm-4" data-toggle="modal" data-target="#popup-image-gallery" tabindex="0">
+                  <div class="card">
+                     <a class="img-card" href="#">
+                     <img src="{{ photo.0.project_images.url }}" alt="thumbs1" />
+                     </a>
+                     <a class="btnslideShow" href="#">
+                     <img src="/static/img/clientProfileview/slideshow.png" alt="thumbs1" />
+                     </a>
+                     <div class="totalPhotos">
+                         25 photos
+                     </div>
+                     <div class="interiorLabels">
+                        Contemporary Villa
+                     </div>
+                     <div class="card-content">
+                        <h4 class="card-title">
+                           <a href=""> Prestige Bougainvillea
+                           </a>
+                        </h4>
+                     </div>
+                  </div>
+               </div>
+                     <div class="maingallerypopup">
+            <div class="modal popup-image-gallery" id="popup-image-gallery" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+               <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                     <div class="modal-body">
+                        <button type="button" class="btn close-btn" title="Close" data-dismiss="modal" aria-label="Close">&#10006;
+                           </button>
+                        <div class="popup-slider-for">
+                            {% for i in photo %}
+                           <div class="main-image">
+                              <img src="{{i.project_images.url}}" alt="">
+                           </div>
+                            {% endfor %}
+                        </div>
+                        <!-- thumbs -->
+                        <div class="popup-slider-nav hidden-xs">
+                            {% for i in photo %}
+                           <div class="thumbnail-image">
+                              <img src="{{i.project_images.url}}" alt="">
+                           </div>
+                                {% endfor %}
+                        </div>
+                        <h5 class="pagingInfo"></h5>
+                        <h2 class="gallery_Title">Contemporary Villa</h2>
+                        <hr>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
+                           ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                           laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
+                        </p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+                {% endfor %}
+               <!-- thumbnail -end -->
 
-
-
-
-
-
-
+            </div>
+         </div>
+      </div>
       <div style="clear:both;"></div>
       <!-- client profile view end -->
       <!-- content ended -->
@@ -312,6 +377,7 @@
       <!-- Javascript -->
       <script src="/static/js/jquery-1.11.1.min.js"></script>
       <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+      <script src='https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick.min.js'></script>
       <script src="/static/js/jquery.backstretch.min.js"></script>
       <script src="/static/js/wow.min.js"></script>
       <script src="/static/js/retina-1.1.0.min.js"></script>

@@ -28,7 +28,7 @@ BUDGET_CHOICES = [(i, str(i)) for i in range(101)]
 
 QUALIFICATION_CHOICES = (
     ('UG', 'UNDER GRADUATE'),
-    ('G', 'GRADUATE'),
+    ('GRADUATE', 'GRADUATE'),
     ('PG', 'POST GRADUATE'),
     ('PhD', 'PhD'),
 )
@@ -77,6 +77,7 @@ class Customer(models.Model):
     email = models.EmailField()
     password = models.CharField(max_length=20)
     con_password=models.CharField(max_length=20)
+
     def __str__(self):
         return self.id
 
@@ -112,20 +113,24 @@ class child_sub_category(models.Model):
 
 class Design(models.Model):
     user = models.ForeignKey(Client, on_delete=models.CASCADE)
-    design_type = models.ForeignKey(child_sub_category, on_delete=models.CASCADE)
+    design_type = models.ForeignKey(Sub_category, on_delete=models.CASCADE)
     design_name = models.CharField(verbose_name="Design project Name", max_length=30)
-    design_description = models.CharField(verbose_name="Design Description", max_length=250)
-    last_modified = models.DateField(default=None, blank=False, null=True)
-    file_size = models.CharField(max_length=20)
+    design_images = models.FileField(upload_to='media/', blank=True, null=True, verbose_name="Design Images")
+    design_number = models.CharField(verbose_name="Design Number", max_length=50)
+
+    def __str__(self):
+        return self.design_name
 
 
 class Project(models.Model):
     user = models.ForeignKey(Client, on_delete=models.CASCADE)
-    project_type = models.ForeignKey(child_sub_category, on_delete=models.CASCADE)
+    project_type = models.ForeignKey(Sub_category, on_delete=models.CASCADE)
     project_name = models.CharField(verbose_name="Project Name", max_length=30)
-    project_description = models.CharField(verbose_name="Project Description", max_length=250)
-    last_modified = models.DateField(default=None, blank=False, null=True)
-    file_size = models.CharField(max_length=20)
+    project_images = models.FileField(upload_to='media/', blank=True, null=True, verbose_name="Project Images")
+    project_number = models.CharField(verbose_name="project Number", max_length=50)
+
+    def __str__(self):
+        return self.project_name
 
 
 class New_Portfolio(models.Model):
@@ -148,6 +153,7 @@ class New_Portfolio(models.Model):
     location = models.CharField(verbose_name="location", max_length=30)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     sub_category = models.ForeignKey(Sub_category, on_delete=models.CASCADE)
+    child_sub_category=models.ForeignKey(child_sub_category,on_delete=models.CASCADE)
 
 
     # @receiver(post_save, sender=Client)
@@ -181,7 +187,7 @@ class DeisgnUploads(models.Model):
     customer = models.ForeignKey(Customer, related_name="customer_designs", on_delete=models.CASCADE)
     design_type = models.ForeignKey(child_sub_category, on_delete=models.CASCADE)
     design_name = models.CharField(verbose_name="Design project Name", max_length=30)
-    design_images = models.FileField(upload_to=content_file_name)
+    design_images = models.FileField(upload_to='media/')
     date_time = models.DateField(verbose_name="Actual BRS Start Date", blank=True, null=True)
 
 
@@ -227,7 +233,6 @@ class Parameters(models.Model):
 
 
 class Questions(models.Model):
-
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     question_title = models.TextField(max_length=200)
@@ -239,7 +244,6 @@ class Questions(models.Model):
 
 
 class Answers(models.Model):
-
     question=models.ForeignKey(Questions,on_delete=models.CASCADE)
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     client = models.ForeignKey(Client, on_delete=models.CASCADE)

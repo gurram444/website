@@ -77,7 +77,7 @@
               <img role="img"  src="/static/img/Location.svg" />
               <input class="form-control" placeholder="Location" type="text" />
             <div class="input-group-btn">
-               <button class="btn btn-lg customSearchBtn" type="submit">
+               <button class="btn btn-lg customSearchBtn" type="submit" id="location-button">
                <img role="img" style="margin-left: 20px;" src="/static/img/Search.svg" />
                </button>
              </div>
@@ -94,7 +94,7 @@
 	            <div class="row navImage">
                 <nav class="navbar">
                   <ul class="navmenuItems flexNavBar ">
-                    <li class="active"><a href="#">
+                    <li><a href="#">
                       <img src="/static/img/Architects.svg" alt="Architects">
                       <p>Architects</p>
                     </a>
@@ -239,8 +239,25 @@
         <script src="/static/js/scripts.js"></script>
 
         <!--[if lt IE 10]>
-            <script src="assets/js/placeholder.js"></script>
+            <script src="/static/js/placeholder.js"></script>
         <![endif]-->
+    <script>
+
+        $('#location-button').click(function () {
+            if (navigator.geolocation)
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    console.log(position);
+                    $.get("http://maps.googleapis.com/maps/api/geocode/json?latlng="+position.coords.latitude+","+position.coords.longitude+"&sensor=flase",function(data) {
+                        console.log(data);
+
+                    })
+
+                });
+            else
+                console.log("geolocation is not supported");
+            
+        });
+    </script>
 
     </body>
 

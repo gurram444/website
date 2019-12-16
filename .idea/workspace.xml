@@ -1,7 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bc40c3d5-92d3-4678-8393-c935f0f4a35c" name="Default Changelist" comment="projectpics" />
+    <list default="true" id="bc40c3d5-92d3-4678-8393-c935f0f4a35c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/templates/designphotos.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/filter_listingPage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/home/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/home/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/home/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/home/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/scripts.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/scripts.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/index1.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index1.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/listingPage.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/listingPage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/searchlist1.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/searchlist1.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/searchlistpage.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/searchlistpage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/viewprofile.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/viewprofile.html" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,7 +124,8 @@
       <updated>1574846514644</updated>
       <workItem from="1574846527456" duration="11994000" />
       <workItem from="1574914976668" duration="249900000" />
-      <workItem from="1576056795863" duration="14150000" />
+      <workItem from="1576056795863" duration="62344000" />
+      <workItem from="1576474555084" duration="250000" />
     </task>
     <task id="LOCAL-00001" summary="listing">
       <created>1575288567935</created>
@@ -162,7 +176,14 @@
       <option name="project" value="LOCAL" />
       <updated>1576129639938</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="projectpics">
+      <created>1576129895605</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1576129895605</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

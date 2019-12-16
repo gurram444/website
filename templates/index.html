@@ -75,9 +75,9 @@
             <div class="form-group">
             <div class="input-group inputIcon">
               <img role="img"  src="/static/img/Location.svg" />
-              <input class="form-control" placeholder="Location" type="text" />
+              <input class="form-control" placeholder="Location" type="text" value="{{ city }}" name="location"/>
             <div class="input-group-btn">
-               <button class="btn btn-lg customSearchBtn" type="submit" id="location-button">
+               <button class="btn btn-lg customSearchBtn" type="submit">
                <img role="img" style="margin-left: 20px;" src="/static/img/Search.svg" />
                </button>
              </div>
@@ -241,23 +241,6 @@
         <!--[if lt IE 10]>
             <script src="/static/js/placeholder.js"></script>
         <![endif]-->
-    <script>
-
-        $('#location-button').click(function () {
-            if (navigator.geolocation)
-                navigator.geolocation.getCurrentPosition(function (position) {
-                    console.log(position);
-                    $.get("http://maps.googleapis.com/maps/api/geocode/json?latlng="+position.coords.latitude+","+position.coords.longitude+"&sensor=flase",function(data) {
-                        console.log(data);
-
-                    })
-
-                });
-            else
-                console.log("geolocation is not supported");
-            
-        });
-    </script>
 
     </body>
 

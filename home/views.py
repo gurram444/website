@@ -2,6 +2,8 @@ from django.shortcuts import render, render_to_response, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import messages
 from django.apps import apps
+from django.template.loader import render_to_string
+
 from home.send_sms import sendSMS
 from .forms import *
 from django.http import JsonResponse
@@ -15,14 +17,20 @@ from django.views.generic import View
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from random import randint
 from django.db.models import Q
+from django.core import serializers
+from django.template import loader, Context
 import hashlib
+import requests
 
 global_otp = []
 
 
 # Create your views here.
 def Home(request):
-    return render(request, 'index.html')
+    res = res = requests.get('https://ipinfo.io/')
+    data = res.json()
+    city = data['city']
+    return render(request, 'index.html', {'city':city})
 
 
 def random_with_N_digits(n):
@@ -113,6 +121,9 @@ def customercreation(request):
 
 def customerpage(request):
     global userobj
+    res = requests.get('https://ipinfo.io/')
+    data = res.json()
+    city = data['city']
     phone_number = request.POST.get('phone_number', '')
     email = request.POST.get('email', '')
     password = request.POST.get('password', '')
@@ -157,67 +168,105 @@ def customerpage(request):
         user = None
     if user is not None:
 
-        return render(request, 'index1.html')
+        return render(request, 'index1.html',{'city':city})
     else:
         messages.error(request, 'Invalid Username or password')
         return redirect('customerpage')
 
 
 def search(request):
-    # from django.contrib.gis.geoip2 import GeoIP2
-    # import pdb;pdb.set_trace()
-    # g = GeoIP2()
-    # city= g.lat_lon('192.168.0.103')
-    # print(city)
-    # from pygeocoder import Geocoder
-    #
-    # location = Geocoder.reverse_geocode(12.9716,77.5946)
-    # print('location')
-    # print("City:", location.city)
-    # print("Country:", location.country)
-
+    res = requests.get('https://ipinfo.io/')
+    data = res.json()
+    city = data['city']
     if request.method == 'GET':
         query = request.GET.get('q')
+        location = request.GET.get('location')
         if query:
-            users = New_Portfolio.objects.filter(Q(location__icontains=query) |
-                                                 Q(sub_category__name__icontains=query) |
-                                                 Q(category__name__icontains=query))
+            users = New_Portfolio.objects.filter(Q(sub_category__name__icontains=query) |Q(category__name__icontains=query)).filter(location__icontains=location)
 
             if users:
+                if request.is_ajax():
+                    modern = request.GET.get('mordern')
+                    traditional = request.GET.get('traditional')
+                    bohemin = request.GET.get('bohemian')
+                    budet_min = request.GET.get('budget[min]')
+                    budget_max = request.GET.get('budget[max]')
+                    style_list = []
+                    if modern == 'true':
+                        style_list.append('modern')
+                    if traditional == 'true':
+                        style_list.append('traditional')
+                    if bohemin == 'true':
+                        style_list.append('bohemian')
+                    filtered_data = New_Portfolio.objects.filter(
+                        Q(child_sub_category__name__in=style_list) & Q(budget__range=[budet_min, budget_max])).filter(Q(location__icontains=query) |
+                                                 Q(sub_category__name__icontains=query) |
+                                                 Q(category__name__icontains=query)).filter(location__icontains=location)
+                    html = render_to_string(
+                        template_name="filter_listingPage.html",
+                        context={"users": filtered_data}
+                    )
+                    data_dict = {"html_from_view": html}
 
-                return render(request, 'searchlistpage.html', {'users': users})
+                    return JsonResponse(data=data_dict, safe=False)
+
+                return render(request, 'searchlistpage.html', {'users': users, 'city':city})
 
             else:
                 messages.error(request, 'no results found')
 
         else:
-            users = New_Portfolio.objects.all()
-            page = request.GET.get('page', 1)
+            users = New_Portfolio.objects.all().filter(location__icontains=location)
+            if request.is_ajax():
+                modern = request.GET.get('mordern')
+                traditional = request.GET.get('traditional')
+                bohemin = request.GET.get('bohemian')
+                budet_min = request.GET.get('budget[min]')
+                budget_max = request.GET.get('budget[max]')
+                style_list = []
+                if modern == 'true':
+                    style_list.append('modern')
+                if traditional == 'true':
+                    style_list.append('traditional')
+                if bohemin == 'true':
+                    style_list.append('bohemian')
+                filtered_data = New_Portfolio.objects.filter(
+                    Q(child_sub_category__name__in=style_list) & Q(budget__range=[budet_min, budget_max])).filter(location__icontains=location)
+                html = render_to_string(
+                    template_name="filter_listingPage.html",
+                    context={"users": filtered_data}
+                )
+                data_dict = {"html_from_view": html}
 
-            paginator = Paginator(users, 3)
-            try:
-                users = paginator.page(page)
-            except PageNotAnInteger:
-                users = paginator.page(1)
-            except EmptyPage:
-                users = paginator.page(paginator.num_pages)
-            return render(request, 'searchlist1.html', {'users': users})
-
-    return render(request, 'index.html')
+                return JsonResponse(data=data_dict, safe=False)
+            return render(request, 'searchlist1.html', {'users': users, 'city':city})
 
 
 def user_list(request, category_id, user_type):
     sub_category = Sub_category.objects.get(name=user_type, category=category_id)
     users = New_Portfolio.objects.filter(sub_category=sub_category)
-    page = request.GET.get('page', 1)
 
-    paginator = Paginator(users, 3)
-    try:
-        users = paginator.page(page)
-    except PageNotAnInteger:
-        users = paginator.page(1)
-    except EmptyPage:
-        users = paginator.page(paginator.num_pages)
+    if request.is_ajax():
+        modern = request.GET.get('mordern')
+        traditional = request.GET.get('traditional')
+        bohemin = request.GET.get('bohemian')
+        budet_min = request.GET.get('budget[min]')
+        budget_max = request.GET.get('budget[max]')
+        style_list = []
+        if modern == 'true':
+            style_list.append('modern')
+        if traditional == 'true':
+            style_list.append('traditional')
+        if bohemin == 'true':
+            style_list.append('bohemian')
+        filtered_data = New_Portfolio.objects.filter(Q(child_sub_category__name__in=style_list) & Q(budget__range=[budet_min, budget_max]) & Q(category_id=category_id) & Q(sub_category__name=user_type))
+        html = render_to_string(
+            template_name="filter_listingPage.html",
+            context={"users": filtered_data}
+        )
+        data_dict = {"html_from_view": html}
+
+        return JsonResponse(data=data_dict, safe=False)
     return render(request, 'listingPage.html', {'users': users})
 
 
@@ -232,11 +281,11 @@ def view_profile(request, user_id):
     for i in project_list:
         project_images = Project.objects.filter(user_id=user_id, project_number=i)
         project_images_list.append(list(project_images))
-
     return render(request, 'viewprofile.html', {'user': user1, 'users': project_images_list})
 
 
-def designphotos(request, user_id):
+def design_photos(request, user_id):
+    #import pdb;pdb.set_trace()
     user1 = Design.objects.filter(user_id=user_id)
     design_list = list()
     for user in user1:
@@ -247,14 +296,27 @@ def designphotos(request, user_id):
         design_images = Design.objects.filter(user_id=user_id, design_number=i)
         design_images_list.append(list(design_images))
 
-    return render(request, "viewprofile.html", {'users': design_images_list})
+    return render(request, "designphotos.html", {'users': design_images_list})
 
 
-def filters(request):
-    budget=request.GET.get('budget')
-    model = apps.get_model('New_portfolio',budget,child_sub_category)
-    data=model.objects.all()
-    return render(request, 'listingPage.html')
+def filters(request,category_id,user_type):
+    category_id = category_id
+    sub_category_id = user_type
+    modern=request.GET.get('mordern')
+    traditional=request.GET.get('traditional')
+    bohemin = request.GET.get('bohemian')
+    budet_min = request.GET.get('budget[min]')
+    budget_max = request.GET.get('budget[max]')
+    style_list = []
+    if modern == 'true':
+        style_list.append('modern')
+    if traditional == 'true':
+        style_list.append('traditional')
+    if bohemin == 'true':
+        style_list.append('bohemian')
+    filtered_data=New_Portfolio.objects.filter(Q(child_sub_category__name__in=style_list) & Q(budget__range=[budet_min, budget_max])&Q(category_id=category_id)&Q(sub_category__name=sub_category_id))
+    qs_json = serializers.serialize('json', filtered_data)
+    return render_to_response('listingPage.html',{'users':filtered_data})
 
 
 def login_register(request):
@@ -315,7 +377,7 @@ def answer(request):
     return render(request, 'Q&A.html')
 
 
-def ey_answer(request, user_id):
+def reply_answer(request, user_id):
     ans = Answers.objects.filter(client_id=user_id)
     return render(request, "Q&A.html", {'ans': ans})
 

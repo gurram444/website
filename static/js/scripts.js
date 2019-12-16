@@ -79,6 +79,7 @@ jQuery(document).ready(function() {
 
 })();
 
+
 //client view profile
 $('#tab-1').show();
 $('#tab-2').hide();
@@ -121,7 +122,7 @@ $('#popup-image-gallery').on('shown.bs.modal', function() {
     focusOnSelect: true,
     variableWidth: true,
     centerMode: true,
-    infinite: true,
+    infinite: false,
   });
 });
 // Slick.js: Get current and total slides (ie. 3/5)
@@ -144,11 +145,12 @@ $('.popup-slider-for').on('afterChange', function(event, slick, currentSlide, ne
 // gallery popup ended
 
 // listing page filters start
-
+False = false
+True = true
 const filtersData = {
-                      mordern: false,
-                      traditional: false,
-                      bohemian: false,
+                      mordern: False,
+                      traditional: False,
+                      bohemian: False,
                       budget : {
                         min: 0,
                         max: 0
@@ -159,19 +161,19 @@ const filtersData = {
 $('#mainFilters').change(function(){
     if ($('#morden_style').prop("checked")) {
 
-        filtersData['mordern'] = true;
+        filtersData['mordern'] = True;
     } else {
-        filtersData['mordern'] = false;
+        filtersData['mordern'] = False;
     }
   if($('#traditional_style').prop("checked")){
-      filtersData['traditional'] = true;
+      filtersData['traditional'] = True;
   }else{
-    filtersData['traditional'] = false;
+    filtersData['traditional'] = False;
   }
   if($('#Bohemian_style').prop("checked")){
-    filtersData['bohemian'] = true;
+    filtersData['bohemian'] = True;
   }else{
-    filtersData['bohemian'] = false;
+    filtersData['bohemian'] = False;
   }
   filtersData["budget"].min = $("#rangeMin").val();
   filtersData["budget"].max = $("#rangeMax").val();
@@ -180,18 +182,20 @@ $('#mainFilters').change(function(){
 
 });
 
-
+const filter_div = $('#filtered_result');
+const endpoint = window.location.href;
 function filterValued(data){
   var filterSaveData = $.ajax({
       type: 'GET',
-      url: "/filters",
+      url: endpoint,
       data: data,
       dataType: "json",
       success: function(resultData) {
+          // console.log(resultData);
+          filter_div.html(resultData['html_from_view']);
         console.log("success!");
       }
 });
   filterSaveData.error(function() { console.log("failed!")});
 }
 
-// listing page filters end

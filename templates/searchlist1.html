@@ -69,7 +69,7 @@
               <div class="form-group">
               <div class="input-group inputIcon">
                 <img role="img"  src="/static/img/Location.svg" />
-                <input class="form-control" placeholder="Location" type="text" />
+                <input class="form-control" placeholder="Location" type="text" value="{{ city }}"/>
               <div class="input-group-btn">
                  <button class="btn btn-lg customSearchBtn" type="submit">
                  <img role="img" style="margin-left: 20px;" src="/static/img/Search.svg" />
@@ -118,27 +118,27 @@
           <div class="container-fluid">
             <div class="row">
               <div class="col-sm-3 col-xs-12">
-                    <div class="listing_filter_bar">
-                      <h4 class="heading">Filters</h4>
-                      <p class="head">Style</p>
-                      <ul class="loginFormCheck filtersListStyles">
-                        <li>
+                    <div id="mainFilters" class="listing_filter_bar">
+                  <h4 class="heading">Filters</h4>
+                  <p class="head">Style</p>
+                  <ul class="loginFormCheck filtersListStyles">
+                     <li>
                         <input type="checkbox" id="morden_style">
                         <label for="morden_style">Mordern</label>
-                        </li>
-                        <li>
-                          <input type="checkbox" id="traditional_style">
-                          <label for="traditional_style">Traditional</label>
-                          </li>
-                        <li>
-                          <input type="checkbox" id="Bohemian_style">
-                          <label for="Bohemian_style">Bohemian</label>
-                        </li>
-                      </ul>
-                      <hr>
-                      <p class="head">Budget</p>
-                      <div class="mainslider">
-                        <div class="range-slider">
+                     </li>
+                     <li>
+                        <input type="checkbox" id="traditional_style">
+                        <label for="traditional_style">Traditional</label>
+                     </li>
+                     <li>
+                        <input type="checkbox" id="Bohemian_style">
+                        <label for="Bohemian_style">Bohemian</label>
+                     </li>
+                  </ul>
+                  <hr>
+                  <p class="head">Budget</p>
+                  <div class="mainslider">
+                     <div class="range-slider">
                         <input value="20" id="rangeMin" min="0" max="100" step="5" type="range"/>
                         <input value="50" id="rangeMax" min="0" max="100" step="5" type="range"/>
                         <svg width="100%" height="24">
@@ -149,64 +149,27 @@
                         <input type="number" value="50" min="0" max="100"/>
                         </span>
                      </div>
-                      </div>
-                      <hr>
-                      <p class="head">Rating</p>
-                      <ul class="loginFormCheck filtersListStyles">
-                        <li>
+                  </div>
+                  <hr>
+                  <p class="head">Rating</p>
+                  <ul class="loginFormCheck filtersListStyles">
+                     <li>
                         <input type="checkbox" id="2andAbove">
                         <label for="2andAbove">2 &#9733; and above</label>
-                        </li>
-                        <li>
-                          <input type="checkbox" id="3andAbove">
-                          <label for="3andAbove">3 &#9733; and above</label>
-                          </li>
-                        <li>
-                          <input type="checkbox" id="5only">
-                          <label for="5only">5 &#9733; only</label>
-                        </li>
-                      </ul>
-                    </div>
+                     </li>
+                     <li>
+                        <input type="checkbox" id="3andAbove">
+                        <label for="3andAbove">3 &#9733; and above</label>
+                     </li>
+                     <li>
+                        <input type="checkbox" id="5only">
+                        <label for="5only">5 &#9733; only</label>
+                     </li>
+                  </ul>
+               </div>
               </div>
-              <div class="col-sm-9 col-xs-12">
-                       {% for user in users %}
-                <div class="mainListingcard">
-                  <div class="profileImg">
-                    <img src="{{ user.profile_pic.url }}" alt="user1">
-                  </div>
-                  <div class="profile_textfield">
-                    <div class="userDesignation">
-                      <p id="Name">{{ user.user.username }}</p>
-                      <small>{{ user.category }}-{{ user.sub_category }}</small>
-                    </div>
-
-                    <div class="Userdetails">
-                      <div class="left">
-                          <p><img src="/static/img/listingPage/Education.png"> {{ user.qualification }} </p>
-                          <p><img src="/static/img/listingPage/Timing.png">  {{ user.experience }} Years</p>
-                          <p><img src="/static/img/Location.svg"/>{{ user.location }}</p>
-                      </div>
-
-                          <div class="right">
-                            <p>125+ Reviews</p>
-                            <p>{{ user.user_id }}-50 Completed Projects</p>
-                            <p>{{ user.budget }}L</p>
-                          </div>
-                          <br>
-                          <div style="float: right">
-                              <a href="{% url 'view_profile' user.user_id %}">
-                                  <button type="button" name="button">ViewProfile</button></a>
-                            <button type="button" name="button">Book Appointment</button>
-
-                          </div>
-
-                    </div>
-
-                </div>
-
-              </div>
-          {% endfor %}
-
+              <div class="col-sm-9 col-xs-12" id="filtered_result">
+            {% include 'filter_listingPage.html' %}>
             </div>
             <div class="row">
               <div class="com-sm12 col-xs-12">

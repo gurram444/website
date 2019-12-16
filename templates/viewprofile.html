@@ -136,8 +136,8 @@
                 <button id="projectPhotos" class="btnlist" type="button" name="button">Project Photos</button>
             </div>
             <div class="col-xs-12 col-lg-2">
-{#                <a href="deginphotos/ {{ user.user_id }}">#}
-                <button id="designPhotos" class="btnlist" type="button" name="button">Design Photos</button>
+                <a href="{% url 'design_photos'  user.user_id %}">
+                    <button id="designPhotos" class="btnlist" type="button" name="button">Design Photos</button></a>
             </div>
          </div>
       </div>
@@ -266,7 +266,7 @@
                      <img src="/static/img/clientProfileview/slideshow.png" alt="thumbs1" />
                      </a>
                      <div class="totalPhotos">
-                         25 photos
+                         {{ photo|length }} photos
                      </div>
                      <div class="interiorLabels">
                         Contemporary Villa
@@ -280,12 +280,11 @@
                   </div>
                </div>
                      <div class="maingallerypopup">
-            <div class="modal popup-image-gallery" id="popup-image-gallery" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+             <div class="modal popup-image-gallery" id="popup-image-gallery" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                <div class="modal-dialog" role="document">
                   <div class="modal-content">
                      <div class="modal-body">
-                        <button type="button" class="btn close-btn" title="Close" data-dismiss="modal" aria-label="Close">&#10006;
-                           </button>
+                        <button type="button" class="btn close-btn" title="Close" data-dismiss="modal" aria-label="Close">&#10006;</button>
                         <div class="popup-slider-for">
                             {% for i in photo %}
                            <div class="main-image">
@@ -294,13 +293,15 @@
                             {% endfor %}
                         </div>
                         <!-- thumbs -->
+
                         <div class="popup-slider-nav hidden-xs">
-                            {% for i in photo %}
+                     {% for j in photo %}
                            <div class="thumbnail-image">
-                              <img src="{{i.project_images.url}}" alt="">
+                              <img src="{{j.project_images.url}}" alt="">
                            </div>
-                                {% endfor %}
+                     {% endfor %}
                         </div>
+
                         <h5 class="pagingInfo"></h5>
                         <h2 class="gallery_Title">Contemporary Villa</h2>
                         <hr>

@@ -19,6 +19,7 @@ urlpatterns = [
                   path('portfolio/', views.portfolio, name='portfolio'),
                   path('userlist/<int:category_id>/<str:user_type>/', views.user_list, name='user_list'),
                   path('view_profile/(?P<user_id>\d+)/', views.view_profile, name='view_profile'),
+                  path('enquiry/(?P<user_id>\d+)/',views.enquiry,name='enquiry'),
                   path('design_photos/(?P<user_id>\d+)/', views.design_photos, name='design_photos'),
                   path('send_sms/',views.send_sms_user,name='send_sms'),
                   path('userlist/<int:category_id>/<str:user_type>/filters/',views.filters, name='filters'),

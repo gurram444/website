@@ -199,3 +199,4 @@ function filterValued(data){
   filterSaveData.error(function() { console.log("failed!")});
 }
 
+//listing page filters end

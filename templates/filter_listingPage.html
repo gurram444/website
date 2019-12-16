@@ -24,7 +24,8 @@
                         <div style="float: right">
                             <a href="{% url 'view_profile' user.user_id %}">
                                 <button class="viewProfile" type="button" name="button">ViewProfile</button></a>
-                           <button class="bookAppointment" type="button" name="button">Book Appointment</button>
+                            <a href="{% url 'enquiry' user.user_id %}">
+                           <button class="bookAppointment" type="button" name="button">Enquiry</button></a>
                         </div>
                      </div>
                   </div>

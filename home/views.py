@@ -3,7 +3,6 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import messages
 from django.apps import apps
 from django.template.loader import render_to_string
-
 from home.send_sms import sendSMS
 from .forms import *
 from django.http import JsonResponse
@@ -199,7 +198,7 @@ def search(request):
                     if bohemin == 'true':
                         style_list.append('bohemian')
                     filtered_data = New_Portfolio.objects.filter(
-                        Q(child_sub_category__name__in=style_list) & Q(budget__range=[budet_min, budget_max])).filter(Q(location__icontains=query) |
+                        Q(child_sub_category__name__in=style_list) & Q(budget__range=[budet_min, budget_max])).filter(
                                                  Q(sub_category__name__icontains=query) |
                                                  Q(category__name__icontains=query)).filter(location__icontains=location)
                     html = render_to_string(
@@ -283,6 +282,9 @@ def view_profile(request, user_id):
         project_images_list.append(list(project_images))
     return render(request, 'viewprofile.html', {'user': user1, 'users': project_images_list})
 
+def enquiry(request,user_id):
+   user=New_Portfolio.objects.get(user_id=user_id)
+   return render(request,'enquiry.html',{'user':user})
 
 def design_photos(request, user_id):
     #import pdb;pdb.set_trace()
@@ -324,8 +326,7 @@ def login_register(request):
 
 
 def portfolio(request):
-    # form = New_PortfolioForm()
-    # return render(request,'portfolio.html',{'form':form})
+
     if request.session.has_key('user'):
         if request.method == 'POST':
             user = request.session['user']
@@ -382,6 +383,4 @@ def reply_answer(request, user_id):
     return render(request, "Q&A.html", {'ans': ans})
 
 
-def AboutDesigner(request, user_id):
-    about = New_Portfolio.objects.filter(user_id=user_id)
-    return render(request, 'about.html', {'about': about})
+

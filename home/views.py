@@ -46,8 +46,8 @@ def sms_user():
 def send_sms_user(request):
     number = request.GET.get('number')
     generate_otp = sms_user()
-    # import pdb;pdb.set_trace()
-    resp = sendSMS('efPEy+Qmmmw-mouME28qYH31Ep8X8hLtXyQjI0b4tL', '91' + number,
+    #import pdb;pdb.set_trace()
+    resp = sendSMS('vV4ixMZmyok-YTys5TMHMljOCzBrfZDYc6aQzUED2B', '91'+number,
                    'TXTLCL', 'OTP to login ' + str(generate_otp))
     print(resp)
     global_otp.append(generate_otp)
@@ -242,6 +242,9 @@ def search(request):
 
 
 def user_list(request, category_id, user_type):
+    res = requests.get('https://ipinfo.io/')
+    data = res.json()
+    city = data['city']
     sub_category = Sub_category.objects.get(name=user_type, category=category_id)
     users = New_Portfolio.objects.filter(sub_category=sub_category)
 
@@ -266,7 +269,7 @@ def user_list(request, category_id, user_type):
         data_dict = {"html_from_view": html}
 
         return JsonResponse(data=data_dict, safe=False)
-    return render(request, 'listingPage.html', {'users': users})
+    return render(request, 'listingPage.html', {'users': users , 'city':city})
 
 
 def view_profile(request, user_id):
@@ -282,9 +285,11 @@ def view_profile(request, user_id):
         project_images_list.append(list(project_images))
     return render(request, 'viewprofile.html', {'user': user1, 'users': project_images_list})
 
+
 def enquiry(request,user_id):
    user=New_Portfolio.objects.get(user_id=user_id)
    return render(request,'enquiry.html',{'user':user})
+
 
 def design_photos(request, user_id):
     #import pdb;pdb.set_trace()
@@ -301,24 +306,24 @@ def design_photos(request, user_id):
     return render(request, "designphotos.html", {'users': design_images_list})
 
 
-def filters(request,category_id,user_type):
-    category_id = category_id
-    sub_category_id = user_type
-    modern=request.GET.get('mordern')
-    traditional=request.GET.get('traditional')
-    bohemin = request.GET.get('bohemian')
-    budet_min = request.GET.get('budget[min]')
-    budget_max = request.GET.get('budget[max]')
-    style_list = []
-    if modern == 'true':
-        style_list.append('modern')
-    if traditional == 'true':
-        style_list.append('traditional')
-    if bohemin == 'true':
-        style_list.append('bohemian')
-    filtered_data=New_Portfolio.objects.filter(Q(child_sub_category__name__in=style_list) & Q(budget__range=[budet_min, budget_max])&Q(category_id=category_id)&Q(sub_category__name=sub_category_id))
-    qs_json = serializers.serialize('json', filtered_data)
-    return render_to_response('listingPage.html',{'users':filtered_data})
+# def filters(request,category_id,user_type):
+#     category_id = category_id
+#     sub_category_id = user_type
+#     modern=request.GET.get('mordern')
+#     traditional=request.GET.get('traditional')
+#     bohemin = request.GET.get('bohemian')
+#     budet_min = request.GET.get('budget[min]')
+#     budget_max = request.GET.get('budget[max]')
+#     style_list = []
+#     if modern == 'true':
+#         style_list.append('modern')
+#     if traditional == 'true':
+#         style_list.append('traditional')
+#     if bohemin == 'true':
+#         style_list.append('bohemian')
+#     filtered_data=New_Portfolio.objects.filter(Q(child_sub_category__name__in=style_list) & Q(budget__range=[budet_min, budget_max])&Q(category_id=category_id)&Q(sub_category__name=sub_category_id))
+#     qs_json = serializers.serialize('json', filtered_data)
+#     return render_to_response('listingPage.html',{'users':filtered_data})
 
 
 def login_register(request):
@@ -343,44 +348,44 @@ def portfolio(request):
             return render(request, 'portfolio.html', {'form': form})
 
 
-def feedback(request):
-    form = FeedbackForm()
-    if request.method == 'POST':
-        form = FeedbackForm(request.POST)
-        if form.is_valid():
-            form.save(commit=True)
-        return redirect('view_profile')
-    return render(request, 'viewprofile.html', {'form': form})
-
-
-def getfeedback(request, user_id):
-    feedback_list = FeedBack.objects.filter(user_id=user_id)
-    return render(request, 'feedback.html', {'feedback': feedback_list})
-
-
-def question(request):
-    form = QuestionForm()
-    if request.method == 'POST':
-        form = QuestionForm(request.POST)
-        if form.is_valid():
-            form.save(commit=True)
-    return render(request, 'Q&A.html', {'form': form})
-
-
-def answer(request):
-    question_id = request.POST('question')
-    customer_id = request.POST('customer')
-    client_id = request.POST('client')
-    answer = request.POST('answer')
-    pub_date = request.POST('pub_date')
-    Answers(question=question_id, customer=customer_id, client=client_id, answer=answer, pub_date=pub_date).save()
-    messages.error(request, 'answer submitted successfully')
-    return render(request, 'Q&A.html')
-
-
-def reply_answer(request, user_id):
-    ans = Answers.objects.filter(client_id=user_id)
-    return render(request, "Q&A.html", {'ans': ans})
+# def feedback(request):
+#     form = FeedbackForm()
+#     if request.method == 'POST':
+#         form = FeedbackForm(request.POST)
+#         if form.is_valid():
+#             form.save(commit=True)
+#         return redirect('view_profile')
+#     return render(request, 'viewprofile.html', {'form': form})
+#
+#
+# def getfeedback(request, user_id):
+#     feedback_list = FeedBack.objects.filter(user_id=user_id)
+#     return render(request, 'feedback.html', {'feedback': feedback_list})
+#
+#
+# def question(request):
+#     form = QuestionForm()
+#     if request.method == 'POST':
+#         form = QuestionForm(request.POST)
+#         if form.is_valid():
+#             form.save(commit=True)
+#     return render(request, 'Q&A.html', {'form': form})
+#
+#
+# def answer(request):
+#     question_id = request.POST('question')
+#     customer_id = request.POST('customer')
+#     client_id = request.POST('client')
+#     answer = request.POST('answer')
+#     pub_date = request.POST('pub_date')
+#     Answers(question=question_id, customer=customer_id, client=client_id, answer=answer, pub_date=pub_date).save()
+#     messages.error(request, 'answer submitted successfully')
+#     return render(request, 'Q&A.html')
+#
+#
+# def reply_answer(request, user_id):
+#     ans = Answers.objects.filter(client_id=user_id)
+#     return render(request, "Q&A.html", {'ans': ans})
 
 
 

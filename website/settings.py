@@ -137,6 +137,5 @@ STATICFILES_DIRS = [
 AUTH_USER_MODEL = "home.Client"
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-GEOIP_PATH=os.path.join(BASE_DIR,'geo_ip')
 
 MEDIA_URL = '/media/'

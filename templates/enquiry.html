@@ -5,9 +5,30 @@
     <title>Iungo</title>
 </head>
 <body>
-{{ user.user.username }} <br>
-{{ user.user.mobile_phone }} <br>
-{{ user.user.email  }}  <br>
-{{ user.about_me }}  <br>
+<div>
+    <div>
+    <h4>Name</h4>
+        <p>{{ user.user.username }}</p>
+    </div>
+    <div>
+        <h4>Phone:</h4>
+        <p>{{ user.mobile_phone }}</p>
+
+    </div>
+
+    <div>
+        <h4>Email:</h4>
+        <p>{{ user.user.email  }} </p>
+    </div>
+    <div>
+        <h4>About:</h4>
+        <p>{{ user.about_me }}</p>
+    </div>
+    <div>
+        <h4>Qualification:</h4>
+        <p>{{ user.qualification}}</p>
+    </div>
+
+</div>
 </body>
 </html>

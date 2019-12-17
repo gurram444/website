@@ -10,4 +10,5 @@ def sendSMS(apikey, numbers, sender, message):
     request = urllib.request.Request("https://api.textlocal.in/send/?")
     f = urllib.request.urlopen(request, data)
     fr = f.read()
-    return (fr)
+    return fr
+

@@ -83,21 +83,34 @@ jQuery(document).ready(function() {
 //client view profile
 $('#tab-1').show();
 $('#tab-2').hide();
+$('#tab-3').hide();
 $('#aboutDesigner').addClass('active');
 
 $('#aboutDesigner').click(function(){
   $('#tab-1').show();
   $('#tab-2').hide();
+  $('#tab-3').hide();
   $('#aboutDesigner').addClass('active');
   $('#projectPhotos').removeClass('active');
-
+  $("#designPhotos").removeClass('active');
 });
 
 $('#projectPhotos').click(function(){
   $('#tab-1').hide();
   $('#tab-2').show();
+  $('#tab-3').hide();
   $('#projectPhotos').addClass('active');
   $('#aboutDesigner').removeClass('active');
+  $("#designPhotos").removeClass('active');
+});
+
+$("#designPhotos").click(function(){
+  $('#tab-1').hide();
+  $('#tab-2').hide();
+  $('#tab-3').show();
+  $('#aboutDesigner').removeClass('active');
+  $('#projectPhotos').removeClass('active');
+  $("#designPhotos").addClass('active');
 });
 
 
@@ -110,9 +123,9 @@ $('#popup-image-gallery').on('shown.bs.modal', function() {
     arrows: true,
     fade: true,
     asNavFor: '.popup-slider-nav',
-
     // adaptiveHeight: true,
   });
+
   $('.popup-slider-nav').slick({
     slidesToShow: 3,
     slidesToScroll: 1,
@@ -122,7 +135,7 @@ $('#popup-image-gallery').on('shown.bs.modal', function() {
     focusOnSelect: true,
     variableWidth: true,
     centerMode: true,
-    infinite: false,
+    infinite: true,
   });
 });
 // Slick.js: Get current and total slides (ie. 3/5)

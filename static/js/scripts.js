@@ -116,7 +116,7 @@ $("#designPhotos").click(function(){
 
 
 // gallery popup start
-$('#popup-image-gallery').on('shown.bs.modal', function() {
+$('popup-image-gallery').on('shown.bs.modal', function() {
   $('.popup-slider-for').slick({
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -158,8 +158,8 @@ $('.popup-slider-for').on('afterChange', function(event, slick, currentSlide, ne
 // gallery popup ended
 
 // listing page filters start
-False = false
-True = true
+False = false;
+True = true;
 const filtersData = {
                       mordern: False,
                       traditional: False,

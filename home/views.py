@@ -276,6 +276,7 @@ def view_profile(request, user_id):
     user1 = New_Portfolio.objects.get(user_id=user_id)
     users = Project.objects.filter(user_id=user_id)
     project_list = list()
+    #import pdb;pdb.set_trace()
     for user in users:
         if int(user.project_number) not in project_list:
             project_list.append(int(user.project_number))
